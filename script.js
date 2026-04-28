@@ -147,21 +147,27 @@ document.getElementById('add-image-btn').addEventListener('click', async () => {
     gallery.prepend(item);
     urlInput.value = '';
     
+    // Refresh list immediately so lightbox and search work for the new item
+    galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+    
+    // Set click handler immediately
+    item.onclick = () => openLightbox(galleryItems.indexOf(item));
+    
     // Analyze with AI
     const img = item.querySelector('img');
     
     // Wait for image to load to classify
     img.onload = async () => {
         try {
-            await classifyImage(item, img);
+            if (img.getAttribute('crossorigin') === 'anonymous') {
+                await classifyImage(item, img);
+            }
         } catch (e) {
             console.warn("AI Analysis blocked by source website (CORS).");
             item.querySelector('.ai-tag').innerText = "AI Restricted";
             item.querySelector('.ai-tag').style.borderColor = "#ff4444";
             item.querySelector('.ai-tag').style.color = "#ff4444";
         }
-        // Refresh gallery items list for lightbox/search
-        galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
     };
     
     img.onerror = () => {
