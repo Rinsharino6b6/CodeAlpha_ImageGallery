@@ -166,12 +166,17 @@ document.getElementById('add-image-btn').addEventListener('click', async () => {
     
     img.onerror = () => {
         // If it failed with anonymous, try loading it without CORS (as a fallback)
-        // so the user can at least see the image even if AI can't touch it.
         if (img.getAttribute('crossorigin') === 'anonymous') {
-            console.log("Retrying without CORS...");
+            console.log("CORS Blocked. Retrying as standard image...");
             img.removeAttribute('crossorigin');
+            
+            // Force browser to re-request without CORS by resetting src
+            const currentSrc = img.src;
+            img.src = '';
+            img.src = currentSrc;
+            
             item.querySelector('.ai-tag').innerText = "AI Disabled";
-            return; // onload will trigger again without CORS
+            return; 
         }
         
         item.remove();
