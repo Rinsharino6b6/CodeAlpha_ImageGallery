@@ -1,0 +1,45 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Image Gallery</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <center>
+    <h1>IMAGE GALLERY</h1>
+  </center>
+  <hr>
+  <div class="filter-bar" >
+    <button onclick="filterImages('all')">All</button>
+    <button onclick="filterImages('nature')">Nature</button>
+    <button onclick="filterImages('Cars')">Cars</button>
+    <button onclick="filterImages('plants')">plants</button>
+  </div>
+  <div class="gallery">
+    <img src="nature3.jpg" data-category="nature" onclick="openLightbox(0)" />
+    <!--img src="car3.jpg" data-category="Cars" onclick="openLightbox(1)" /-->
+    <img src="plant1.jpg" data-category="plants" onclick="openLightbox(2)" />
+    <!--img src="nature2.jpg" data-category="nature" onclick="openLightbox(3)" /-->
+    <img src="car2.jpg" data-category="Cars" onclick="openLightbox(4)" />
+    <img src="plant2.jpg" data-category="plants" onclick="openLightbox(5)" />
+    <img src="nature5.jpg" data-category="nature" onclick="openLightbox(0)" />
+    <img src="car3.jpg" data-category="Cars" onclick="openLightbox(0)" />
+    <img src="plant4.avif" data-category="plants" onclick="openLightbox(5)" />
+    <img src="nature6.jpg" data-category="nature" onclick="openLightbox(0)" />
+    
+    <img src="car4.jpg" data-category="Cars" onclick="openLightbox(0)" />
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <button class="close-btn" onclick="closeLightbox()">&times;</button>
+    <button class="nav-btn prev-btn" onclick="prevImage()">&#8249;</button>
+    <img id="lightbox-img" src="" />
+    <button class="nav-btn next-btn" onclick="nextImage()">&#8250;</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
