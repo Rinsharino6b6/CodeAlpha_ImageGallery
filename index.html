@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Vision | AI Image Gallery</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <!-- AI Model Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+</head>
+<body>
+  <header>
+    <h1>SMART VISION</h1>
+    <div class="controls">
+      <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search AI-detected objects (e.g. 'car', 'tree', 'flower')...">
+      </div>
+      <div class="filter-bar" id="category-filters">
+        <button class="active" onclick="filterByCategory('all')">All</button>
+        <!-- Categories will be dynamically updated by AI -->
+      </div>
+      <div class="ai-status" id="ai-status">
+        <div class="spinner"></div>
+        <span>Initializing Neural Network...</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="gallery" id="image-gallery">
+    <!-- Nature -->
+    <div class="gallery-item" data-category="nature">
+        <img src="nature1.jpg" loading="lazy" />
+        <div class="item-overlay"><span class="ai-tag">Analyzing...</span></div>
+    </div>
+    <div class="gallery-item" data-category="nature">
+        <img src="nature2.jpg" loading="lazy" />
+        <div class="item-overlay"><span class="ai-tag">Analyzing...</span></div>
+    </div>
+    <div class="gallery-item" data-category="nature">
+        <img src="nature3.jpg" loading="lazy" />
+        <div class="item-overlay"><span class="ai-tag">Analyzing...</span></div>
+    </div>
+     <div class="gallery-item" data-category="nature">
+        <img src="nature5.jpg" loading="lazy" />
+        <div class="item-overlay"><span class="ai-tag">Analyzing...</span></div>
+    </div>
+    <div class="gallery-item" data-category="nature">
+        <img src="nature6.jpg" loading="lazy" />
+        <div class="item-overlay"><span class="ai-tag">Analyzing...</span></div>
+    </div>
+    
+    <!-- Cars -->
+    <div class="gallery-item" data-category="cars">
+        <img src="car1.jpg" loading="lazy" />
+        <div class="item-overlay"><span class="ai-tag">Analyzing...</span></div>
+    </div>
+    <div class="gallery-item" data-category="cars">
+        <img src="car2.jpg" loading="lazy" />
+        <div class="item-overlay"><span class="ai-tag">Analyzing...</span></div>
+    </div>
+    <div class="gallery-item" data-category="cars">
+        <img src="car3.jpg" loading="lazy" />
+        <div class="item-overlay"><span class="ai-tag">Analyzing...</span></div>
+    </div>
+    <div class="gallery-item" data-category="cars">
+        <img src="car4.jpg" loading="lazy" />
+        <div class="item-overlay"><span class="ai-tag">Analyzing...</span></div>
+    </div>
+    <div class="gallery-item" data-category="cars">
+        <img src="car5.jpg" loading="lazy" />
+        <div class="item-overlay"><span class="ai-tag">Analyzing...</span></div>
+    </div>
+
+    <!-- Plants -->
+    <div class="gallery-item" data-category="plants">
+        <img src="plant1.jpg" loading="lazy" />
+        <div class="item-overlay"><span class="ai-tag">Analyzing...</span></div>
+    </div>
+    <div class="gallery-item" data-category="plants">
+        <img src="plant2.jpg" loading="lazy" />
+        <div class="item-overlay"><span class="ai-tag">Analyzing...</span></div>
+    </div>
+    <div class="gallery-item" data-category="plants">
+        <img src="plant4.avif" loading="lazy" />
+        <div class="item-overlay"><span class="ai-tag">Analyzing...</span></div>
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <button class="close-btn" onclick="closeLightbox()">&times;</button>
+    <div class="lightbox-content">
+        <button class="nav-btn prev-btn" onclick="changeImage(-1)">&#8249;</button>
+        <img id="lightbox-img" src="" />
+        <button class="nav-btn next-btn" onclick="changeImage(1)">&#8250;</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
