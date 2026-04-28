@@ -75,6 +75,56 @@ h1 {
     box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.1);
 }
 
+/* Industry Level Addition Styles */
+.add-image-container {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+#image-url-input {
+    flex-grow: 1;
+    padding: 1rem 1.5rem;
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px dashed var(--glass-border);
+    border-radius: 12px;
+    color: white;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+#image-url-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    border-style: solid;
+}
+
+#add-image-btn {
+    padding: 0 1.5rem;
+    background: linear-gradient(135deg, var(--accent-color), #0ea5e9);
+    border: none;
+    color: var(--bg-color);
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+}
+
+#add-image-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.4);
+    filter: brightness(1.1);
+}
+
+#add-image-btn:active {
+    transform: translateY(0);
+}
+
 .filter-bar {
     display: flex;
     justify-content: center;

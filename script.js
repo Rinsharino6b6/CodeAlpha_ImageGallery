@@ -125,5 +125,43 @@ function changeImage(offset) {
     lightboxImg.src = galleryItems[currentIndex].querySelector('img').src;
 }
 
+// Dynamic Image Addition Logic
+document.getElementById('add-image-btn').addEventListener('click', async () => {
+    const urlInput = document.getElementById('image-url-input');
+    const url = urlInput.value.trim();
+    
+    if (!url) return;
+    
+    // Create new gallery item
+    const gallery = document.getElementById('image-gallery');
+    const item = document.createElement('div');
+    item.className = 'gallery-item';
+    item.dataset.category = 'uncategorized'; // Default category
+    
+    item.innerHTML = `
+        <img src="${url}" crossorigin="anonymous" loading="lazy" />
+        <div class="item-overlay"><span class="ai-tag">Analyzing...</span></div>
+    `;
+    
+    // Add to gallery
+    gallery.prepend(item);
+    urlInput.value = '';
+    
+    // Analyze with AI
+    const img = item.querySelector('img');
+    
+    // Wait for image to load to classify
+    img.onload = async () => {
+        await classifyImage(item, img);
+        // Refresh gallery items list for lightbox/search
+        galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+    };
+    
+    img.onerror = () => {
+        item.remove();
+        alert("Could not load image. Please check the URL or ensure it allows cross-origin access.");
+    };
+});
+
 // Start everything
 window.onload = initAI;
